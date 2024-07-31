@@ -11,6 +11,8 @@ namespace ozhar_hasfarim
 
             var app = builder.Build();
 
+
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
