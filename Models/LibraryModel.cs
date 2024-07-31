@@ -1,8 +1,10 @@
-﻿using ozhar_hasfarim.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using ozhar_hasfarim.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace ozhar_hasfarim.Models
 {
+    [Index(nameof(Genre), IsUnique = true)]
     public class LibraryModel
     {
         [Key]
@@ -11,6 +13,6 @@ namespace ozhar_hasfarim.Models
         [Required]
         public required GenreEnum Genre { get; set; }
 
-        public IEnumerable<ShelfModel> Shelves { get; set; } = [];
+        public List<ShelfModel> Shelves { get; set; } = [];
     }
 }

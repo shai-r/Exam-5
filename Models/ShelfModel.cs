@@ -16,6 +16,6 @@ namespace ozhar_hasfarim.Models
         public LibraryModel? Library { get; set; }
         public long LibraryId { get; set; }
 
-        public IEnumerable<BooksSetModel> BooksSets { get; set; } = [];
+        public List<BooksSetModel> BooksSets { get; set; } = [];
     }
 }

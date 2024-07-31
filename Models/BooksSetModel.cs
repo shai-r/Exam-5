@@ -14,6 +14,6 @@ namespace ozhar_hasfarim.Models
 
         public long ShelfId {  get; set; } 
 
-        public IEnumerable<BookModel> Books { get; set; } = [];
+        public List<BookModel> Books { get; set; } = [];
     }
 }
