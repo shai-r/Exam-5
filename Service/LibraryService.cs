@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ozhar_hasfarim.Data;
 using ozhar_hasfarim.Models;
+using ozhar_hasfarim.ViewModels;
 
 namespace ozhar_hasfarim.Service
 {
@@ -12,10 +14,15 @@ namespace ozhar_hasfarim.Service
             _context = context;
         }
 
-        public async Task<IEnumerable<LibraryModel>> GetAllLibrary() => await _context.Libraries
-            .Include(library => library.Shelves)
-            .ThenInclude(shelf => shelf.BooksSets)
-            .ThenInclude(booksset => booksset.Books)
+
+
+        public async Task<IEnumerable<LibraryVM>> GetAllLibrary() => await _context.Libraries
+            .Select(library => new LibraryVM() { Id = library.Id, Genre = library.Genre })
             .ToListAsync();
+
+        public async Task<LibraryModel> GetLibraryByID(long id)
+        {
+                return await _context.Libraries.FirstOrDefaultAsync(i => i.Id == id);
+        }
     }
 }
