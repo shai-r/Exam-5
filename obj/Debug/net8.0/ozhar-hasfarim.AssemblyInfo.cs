@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ozhar-hasfarim")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+718a8765b6715f4b81e6f4d1c209eb37eb3ebfee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2601e7bad0759bb6e32705cd5774ddd8d8ee63b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ozhar-hasfarim")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ozhar-hasfarim")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

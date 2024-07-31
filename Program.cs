@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ozhar_hasfarim.Data;
+using ozhar_hasfarim.Service;
 
 namespace ozhar_hasfarim
 {
@@ -11,6 +12,8 @@ namespace ozhar_hasfarim
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ILibraryService, LibraryService>();
 
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
