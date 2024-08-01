@@ -7,7 +7,10 @@ namespace ozhar_hasfarim.Service
     {
         Task<IEnumerable<LibraryVM>> GetAllLibrary();
 
-        Task<LibraryModel> GetLibraryByID(long id);
-        //void CreateLibrary(LibraryVM newLibrary);
+        Task<LibraryModel?> GetLibraryByID(long id);
+
+        Task<LibraryModel> CreateLibrary(LibraryVM newLibrary);
+
+        void DeleteLibrary(LibraryModel library);
     }
 }

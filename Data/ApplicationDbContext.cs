@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ozhar_hasfarim.Enums;
 using ozhar_hasfarim.Models;
+using ozhar_hasfarim.ViewModels;
 
 namespace ozhar_hasfarim.Data
 {
@@ -100,5 +101,6 @@ namespace ozhar_hasfarim.Data
 				.HasForeignKey(book => book.BooksSetId)
 				.OnDelete(DeleteBehavior.Cascade);
 		}
+	    public DbSet<ozhar_hasfarim.ViewModels.BooksSetVM> BooksSetVM { get; set; } = default!;
 	}
 }

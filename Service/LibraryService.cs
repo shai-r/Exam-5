@@ -14,15 +14,27 @@ namespace ozhar_hasfarim.Service
             _context = context;
         }
 
-
-
-        public async Task<IEnumerable<LibraryVM>> GetAllLibrary() => await _context.Libraries
+        public async Task<IEnumerable<LibraryVM>> GetAllLibrary() => 
+            await _context.Libraries
             .Select(library => new LibraryVM() { Id = library.Id, Genre = library.Genre })
             .ToListAsync();
 
-        public async Task<LibraryModel> GetLibraryByID(long id)
+        public async Task<LibraryModel?> GetLibraryByID(long id)=>
+            await _context.Libraries
+            .FirstOrDefaultAsync(library => library.Id == id);
+
+        public async Task<LibraryModel> CreateLibrary(LibraryVM newLibrary)
         {
-                return await _context.Libraries.FirstOrDefaultAsync(i => i.Id == id);
+            LibraryModel model = new() { Genre = newLibrary.Genre };
+            _context.Libraries.Add(model);
+            await _context.SaveChangesAsync();
+            return model;
+        }
+
+        public void DeleteLibrary(LibraryModel library)
+        {
+            _context.Libraries.Remove(library);
+            _context.SaveChanges();
         }
     }
 }

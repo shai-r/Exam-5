@@ -12,4 +12,10 @@
         Chinuch,
         Shonot
     }
+
+    /*public GenreEnum GetGenre(string name)=> name switch
+    {
+        "תורה"=> GenreEnum.Tora,
+        _=> GenreEnum.Shonot,
+    }*/
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ozhar_hasfarim.ViewModels
 {
-    public class BookVm
+    public class BookVM
     {
         public long Id { get; set; }
 

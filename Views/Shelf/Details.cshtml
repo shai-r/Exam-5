@@ -1,0 +1,37 @@
+﻿@model ozhar_hasfarim.ViewModels.ShelfVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details of shelf</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })|
+    @Html.ActionLink("Back to List", "Index", new { libraryId = Model.LibraryId }) |
+    @Html.ActionLink("Sets in shelf", "Index", "BookSet", new { shelfId = Model.Id })
+</div>

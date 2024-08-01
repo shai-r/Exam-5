@@ -8,7 +8,7 @@ namespace ozhar_hasfarim.ViewModels
     {
         public long Id { get; set; }
 
-        [Required]
-        public required GenreEnum Genre { get; set; }
+    
+        public GenreEnum Genre { get; set; }
     }
 }

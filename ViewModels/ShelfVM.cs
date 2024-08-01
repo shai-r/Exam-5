@@ -7,9 +7,11 @@ namespace ozhar_hasfarim.ViewModels
         public long Id { get; set; }
 
         [Required]
-        public required int Height { get; set; }
+        public int Height { get; set; }
 
         [Required]
-        public required int Width { get; set; }
+        public int Width { get; set; }
+
+        public long LibraryId { get; set; }
     }
 }

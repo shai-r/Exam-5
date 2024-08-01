@@ -33,14 +33,35 @@ namespace ozhar_hasfarim.Controllers
 
         public IActionResult Create() => View();
 
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]*/
-        /*public IActionResult Create(LibraryVM libraryVM)
+        [HttpPost]
+        public async Task<IActionResult> Create(LibraryVM libraryVM)
         {
-            if (!ModelState.IsValid) { return BadRequest(""); }
-
-            _libraryService.CreateLibrary(libraryVM);
+            var model = await _libraryService.CreateLibrary(libraryVM);
+            libraryVM.Id = model.Id;
             return View("Details", libraryVM);
-        }*/
+        }
+
+        public async Task<IActionResult> Delete(long id)
+        {
+            LibraryModel? library = await _libraryService.GetLibraryByID(id);
+            if (library == null)
+            {
+                return NotFound();
+            }
+
+            return View(library);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(long id)
+        {
+            LibraryModel? library = await _libraryService.GetLibraryByID(id);
+            if (library != null)
+            {
+                _libraryService.DeleteLibrary(library);
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
