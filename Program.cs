@@ -19,6 +19,8 @@ namespace ozhar_hasfarim
 
             builder.Services.AddScoped<IBooksSetService, BooksSetService>();
 
+            builder.Services.AddScoped<IBookService, BookService>();
+
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection")

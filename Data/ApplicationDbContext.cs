@@ -101,6 +101,6 @@ namespace ozhar_hasfarim.Data
 				.HasForeignKey(book => book.BooksSetId)
 				.OnDelete(DeleteBehavior.Cascade);
 		}
-	    public DbSet<ozhar_hasfarim.ViewModels.BooksSetVM> BooksSetVM { get; set; } = default!;
+	    public DbSet<ozhar_hasfarim.ViewModels.BookVM> BookVM { get; set; } = default!;
 	}
 }

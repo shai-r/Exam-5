@@ -7,9 +7,11 @@ namespace ozhar_hasfarim.Service
     {
         List<BookVM>? GetAllBooksBySetId(long booksSetId);
 
-        Task<BooksSetModel?> GetBookById(long bookId);
+        Task<BookModel?> GetBookById(long bookId);
 
-        Task<BooksSetModel> CreateBook(BookVM newBook);
+        Task<BookModel?> GetBookByIdWithSetName(long bookId);
+
+        Task<BookModel> CreateBook(BookVM newBook);
 
         void DeleteBook(BookModel book);
     }

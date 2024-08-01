@@ -38,7 +38,7 @@
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id, shelfId = ViewBag.ShelfId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id,  })|
-                @* @Html.ActionLink("Shelves in library", "Index", "Book", new { /* shelfId = item.Id */ }) *@
+                @Html.ActionLink("Books in set", "Index", "Book", new { booksSetId = item.Id })
             </td>
         </tr>
 }

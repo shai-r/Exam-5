@@ -26,5 +26,5 @@
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index", new { shelfId = Model.ShelfId }) |
-    @* @Html.ActionLink("Shelves in shelf", "Index", "BookSet", new { shelfId = Model.Id }) *@
+    @Html.ActionLink("Books in set", "Index", "Book", new { booksSetId = Model.Id })
 </div>

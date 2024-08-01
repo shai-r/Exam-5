@@ -11,12 +11,14 @@ namespace ozhar_hasfarim.ViewModels
         public string Name { get; set; }
 
         [Required]
-        public required GenreEnum Genre { get; set; }
+        public GenreEnum Genre { get; set; }
 
         [Required]
-        public required int Height { get; set; }
+        public int Height { get; set; }
 
         [Required]
-        public required int Width { get; set; }
+        public int Width { get; set; }
+
+        public long BooksSetId {  get; set; }
     }
 }

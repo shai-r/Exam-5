@@ -38,6 +38,7 @@ namespace ozhar_hasfarim.Service
         public List<BooksSetVM>? GetAllBooksSetsByShlfId(long shlfId) =>
               _context.Shelves
             .Include(shelf => shelf.BooksSets)
+            //.ThenInclude(set=>set.Books)
             .FirstOrDefaultAsync(shelf => shelf.Id == shlfId)
             .Result?.BooksSets
             .Select(booksSet => new BooksSetVM() 
