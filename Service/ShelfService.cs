@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ozhar_hasfarim.Data;
+using ozhar_hasfarim.Enums;
 using ozhar_hasfarim.Models;
 using ozhar_hasfarim.ViewModels;
 
@@ -47,5 +48,22 @@ namespace ozhar_hasfarim.Service
             _context.Shelves.Remove(shelfModel);
             _context.SaveChanges();
         }
+
+        public bool IsShelfActive(long shelfId) =>
+            _context.Shelves
+            .FirstOrDefault(shelf => shelf.Id == shelfId)!
+            .BooksSets
+            .Any();
+
+        public int GetShelfHeight(long shelfId) =>
+            GetShelfByID(shelfId).Result!.Height;
+
+        public GenreEnum GenreOfLibrary(long shelfId) =>
+            _context.Shelves
+                .Include(s => s.Library)
+                .FirstOrDefaultAsync(s => s.Id == shelfId)
+                .Result!
+                .Library!
+                .Genre;
     }
 }

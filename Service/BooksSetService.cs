@@ -19,12 +19,12 @@ namespace ozhar_hasfarim.Service
         {
             BooksSetModel model = new()
             {
-                Id = newBooksSet.Id,
                 Name = newBooksSet.Name,
                 ShelfId = newBooksSet.ShelfId,
                 Shelf = await _shelfService.GetShelfByID(newBooksSet.ShelfId)
             };
             _context.BooksSets.Add(model);
+            //_context.Shelves.f
             await _context.SaveChangesAsync();
             return model;
         }
@@ -55,10 +55,30 @@ namespace ozhar_hasfarim.Service
 
         public int GetWidth(long booksSetId)
         {
-            return GetBooksSetByBookSetId(booksSetId).Result
-                 .Books
-                 .Select(book => book.Width)
-                 .Sum();
+            int width = 0;
+            bool a = IsSetActive(booksSetId);
+            if (a)
+            {
+                var t = GetBooksSetByBookSetId(booksSetId).Result!;
+                var tt = t.Books;
+                var ttt = tt.Select(book => book.Width);
+                width = ttt.Sum();
+            }
+            return width;
+        }
+
+        public int GetHeight(long booksSetId) =>
+            IsSetActive(booksSetId) ?
+            GetBooksSetByBookSetId(booksSetId).Result!.Books
+            .FirstOrDefault()!
+            .Height :
+            0;
+
+        public bool IsSetActive(long booksSetId)
+        {
+            var t = _context.Books;
+            var tt = t.FirstOrDefault(book => book.BooksSetId == booksSetId)!;
+            return tt != null;
         }
     }
 }

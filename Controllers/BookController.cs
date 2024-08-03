@@ -56,67 +56,22 @@ namespace ozhar_hasfarim.Controllers
             return View(bookVM);
         }
 
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<IActionResult> Create(BookVM bookVM)
-         {
-            var model = await _bookService.CreateBook(bookVM);
-            bookVM.Id = model.Id;
-            return View("Details", bookVM);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(BookVM bookVM)
+        {
+            try
+            {
+                var model = await _bookService.CreateBook(bookVM);
+                bookVM.Id = model.Id;
+                return View("Details", bookVM);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(bookVM);
+            }
         }
-
-         // GET: BookModels/Edit/5
-         /*public async Task<IActionResult> Edit(long? id)
-         {
-             if (id == null)
-             {
-                 return NotFound();
-             }
-
-             var bookModel = await _context.Books.FindAsync(id);
-             if (bookModel == null)
-             {
-                 return NotFound();
-             }
-             ViewData["BooksSetId"] = new SelectList(_context.BooksSets, "Id", "Name", bookModel.BooksSetId);
-             return View(bookModel);
-         }
-
-         // POST: BookModels/Edit/5
-         // To protect from overposting attacks, enable the specific properties you want to bind to.
-         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Genre,Height,Width,BooksSetId")] BookModel bookModel)
-         {
-             if (id != bookModel.Id)
-             {
-                 return NotFound();
-             }
-
-             if (ModelState.IsValid)
-             {
-                 try
-                 {
-                     _context.Update(bookModel);
-                     await _context.SaveChangesAsync();
-                 }
-                 catch (DbUpdateConcurrencyException)
-                 {
-                     if (!BookModelExists(bookModel.Id))
-                     {
-                         return NotFound();
-                     }
-                     else
-                     {
-                         throw;
-                     }
-                 }
-                 return RedirectToAction(nameof(Index));
-             }
-             ViewData["BooksSetId"] = new SelectList(_context.BooksSets, "Id", "Name", bookModel.BooksSetId);
-             return View(bookModel);
-         }*/
 
         public async Task<IActionResult> Delete(long id)
         {
@@ -141,10 +96,5 @@ namespace ozhar_hasfarim.Controllers
             }
             return RedirectToAction("Index", new { booksSetId });
         }
-
-        /*private bool BookModelExists(long id)
-        {
-            return _context.Books.Any(e => e.Id == id);
-        }*/
     }
 }

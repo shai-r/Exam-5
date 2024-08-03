@@ -1,4 +1,5 @@
-﻿using ozhar_hasfarim.Models;
+﻿using ozhar_hasfarim.Enums;
+using ozhar_hasfarim.Models;
 using ozhar_hasfarim.ViewModels;
 
 namespace ozhar_hasfarim.Service
@@ -12,5 +13,7 @@ namespace ozhar_hasfarim.Service
         Task<LibraryModel> CreateLibrary(LibraryVM newLibrary);
 
         void DeleteLibrary(LibraryModel library);
+
+        Task<bool> GenreExists(GenreEnum genre);
     }
 }

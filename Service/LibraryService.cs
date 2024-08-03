@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ozhar_hasfarim.Data;
+using ozhar_hasfarim.Enums;
 using ozhar_hasfarim.Models;
 using ozhar_hasfarim.ViewModels;
 
@@ -25,6 +26,10 @@ namespace ozhar_hasfarim.Service
 
         public async Task<LibraryModel> CreateLibrary(LibraryVM newLibrary)
         {
+            if (await GenreExists(newLibrary.Genre))
+            {
+                throw new Exception("The genre exists. Please try to create a different genre.");
+            }
             LibraryModel model = new() { Genre = newLibrary.Genre };
             _context.Libraries.Add(model);
             await _context.SaveChangesAsync();
@@ -36,5 +41,8 @@ namespace ozhar_hasfarim.Service
             _context.Libraries.Remove(library);
             _context.SaveChanges();
         }
+
+        public async Task<bool> GenreExists(GenreEnum genre) =>
+            await _context.Libraries.AnyAsync(l => l.Genre == genre);
     }
 }

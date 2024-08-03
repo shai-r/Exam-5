@@ -36,9 +36,17 @@ namespace ozhar_hasfarim.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(LibraryVM libraryVM)
         {
+            try
+            {
             var model = await _libraryService.CreateLibrary(libraryVM);
             libraryVM.Id = model.Id;
-            return View("Details", libraryVM);
+                return View("Details", libraryVM);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(libraryVM);
+            }
         }
 
         public async Task<IActionResult> Delete(long id)

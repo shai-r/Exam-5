@@ -14,6 +14,9 @@ namespace ozhar_hasfarim.Service
         void DeleteBookSet(BooksSetModel booksSet);
 
         int GetWidth(long booksSetId);
+        
+        int GetHeight(long booksSetId);
 
+        bool IsSetActive(long booksSetId);
     }
 }
